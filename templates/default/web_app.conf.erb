@@ -13,6 +13,7 @@
 	<% end -%>
 	<% end -%>
 	DocumentRoot <%= node['confluence']['install_path'] %>
+	Options -Indexes
 	
 	CustomLog <%= node['confluence']['apache2']['access_log'].empty? ? node['apache']['log_dir']+"/confluence-access.log" : node['confluence']['apache2']['access_log'] %> combined
 	ErrorLog <%= node['confluence']['apache2']['error_log'].empty? ? node['apache']['log_dir']+"/confluence-error.log" : node['confluence']['apache2']['error_log'] %>
@@ -22,8 +23,8 @@
 		Order Deny,Allow
 		Allow from all
 	</Proxy>
-	ProxyPass        / http://localhost:<%= node['confluence']['tomcat']['port'] %>/ connectiontimeout=5 timeout=300
-	ProxyPassReverse / http://localhost:<%= node['confluence']['tomcat']['port'] %>/
+	ProxyPass        /<%= node['confluence']['context'] %> http://localhost:<%= node['confluence']['tomcat']['port'] %>/<%= node['confluence']['context'] %> connectiontimeout=5 timeout=300
+	ProxyPassReverse /<%= node['confluence']['context'] %> http://localhost:<%= node['confluence']['tomcat']['port'] %>/<%= node['confluence']['context'] %>
 </VirtualHost>
 
 <VirtualHost *:<%= node['confluence']['apache2']['ssl']['port'] %>>
@@ -37,6 +38,7 @@
 	<% end -%>
 	<% end -%>
 	DocumentRoot <%= node['confluence']['install_path'] %>
+	Options -Indexes
 
 	CustomLog <%= node['confluence']['apache2']['ssl']['access_log'].empty? ? node['apache']['log_dir']+"/confluence-ssl-access.log" : node['confluence']['apache2']['ssl']['access_log'] %> combined
 	ErrorLog <%= node['confluence']['apache2']['ssl']['error_log'].empty? ? node['apache']['log_dir']+"/confluence-ssl-error.log" : node['confluence']['apache2']['ssl']['error_log'] %>
@@ -46,8 +48,8 @@
 		Order Deny,Allow
 		Allow from all
 	</Proxy>
-	ProxyPass        / http://localhost:<%= node['confluence']['tomcat']['port'] %>/ connectiontimeout=5 timeout=300
-	ProxyPassReverse / http://localhost:<%= node['confluence']['tomcat']['port'] %>/
+	ProxyPass        /<%= node['confluence']['context'] %> http://localhost:<%= node['confluence']['tomcat']['port'] %>/<%= node['confluence']['context'] %> connectiontimeout=5 timeout=300
+	ProxyPassReverse /<%= node['confluence']['context'] %> http://localhost:<%= node['confluence']['tomcat']['port'] %>/<%= node['confluence']['context'] %>
 
 	SSLEngine on
 	SSLCertificateFile <%= node['confluence']['apache2']['ssl']['certificate_file'] %>
