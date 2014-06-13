@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+ark_prefix_path = ::File.dirname(node['confluence']['install_path']) if ::File.basename(node['confluence']['install_path']) == 'confluence'
+ark_prefix_path ||= node['confluence']['install_path']
 settings = Confluence.settings(node)
 
 directory File.dirname(node['confluence']['home_path']) do
@@ -51,13 +53,6 @@ execute 'Generating Self-Signed Java Keystore' do
   only_if { settings['tomcat']['keystoreFile'] == "#{node['confluence']['home_path']}/.keystore" }
 end
 
-remote_file "#{Chef::Config[:file_cache_path]}/atlassian-confluence-#{node['confluence']['version']}.tar.gz" do
-  source node['confluence']['url']
-  checksum node['confluence']['checksum']
-  mode '0644'
-  action :create_if_missing
-end
-
 directory File.dirname(node['confluence']['install_path']) do
   owner node['confluence']['user']
   group node['confluence']['user']
@@ -66,14 +61,14 @@ directory File.dirname(node['confluence']['install_path']) do
   recursive true
 end
 
-execute "Extracting Confluence #{node['confluence']['version']}" do
-  cwd Chef::Config[:file_cache_path]
-  command <<-COMMAND
-    tar -zxf atlassian-confluence-#{node['confluence']['version']}.tar.gz
-    mv atlassian-confluence-#{node['confluence']['version']} #{node['confluence']['install_path']}
-    chown -R #{node['confluence']['user']} #{node['confluence']['install_path']}
-  COMMAND
-  creates "#{node['confluence']['install_path']}/confluence"
+ark 'confluence' do
+  url node['confluence']['url']
+  prefix_root ark_prefix_path
+  prefix_home ark_prefix_path
+  checksum node['confluence']['checksum']
+  version node['confluence']['version']
+  owner node['confluence']['user']
+  group node['confluence']['user']
 end
 
 if settings['database']['type'] == 'mysql'
