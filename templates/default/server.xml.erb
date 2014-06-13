@@ -51,7 +51,7 @@
 
         <Engine name="Standalone" defaultHost="localhost" debug="0">
             <Host name="localhost" debug="0" appBase="webapps" unpackWARs="true" autoDeploy="true">
-                <Context path="" docBase="../confluence" debug="0" reloadable="false" useHttpOnly="true">
+                <Context path="<%= node['confluence']['context'].empty? ? '' : '/' + node['confluence']['context'] %>" docBase="../confluence" debug="0" reloadable="false" useHttpOnly="true">
                   <Manager pathname="" />
                 </Context>
             </Host>

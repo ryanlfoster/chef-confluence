@@ -201,6 +201,7 @@ else
 end
 # rubocop:enable BlockNesting
 
+default['confluence']['apache2']['webapp_enable']      = true
 default['confluence']['apache2']['access_log']         = ''
 default['confluence']['apache2']['error_log']          = ''
 default['confluence']['apache2']['port']               = 80
@@ -238,3 +239,4 @@ default['confluence']['tomcat']['keystoreFile'] = "#{node['confluence']['home_pa
 default['confluence']['tomcat']['keystorePass'] = 'changeit'
 default['confluence']['tomcat']['port']         = '8090'
 default['confluence']['tomcat']['ssl_port']     = '8443'
+default['confluence']['context']                = ''
