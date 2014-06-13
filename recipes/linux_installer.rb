@@ -54,9 +54,9 @@ execute 'Generating Self-Signed Java Keystore' do
   only_if { settings['tomcat']['keystoreFile'] == "#{node['confluence']['home_path']}/.keystore" }
 end
 
-if settings['database']['type'] == 'mysql'
+if settings['database']['type'] == 'mysql' || settings['database']['type'] == 'percona'
   include_recipe 'mysql_connector'
-  mysql_connector_j "#{node['confluence']['install_path']}/lib"
+  mysql_connector_j "#{node['confluence']['install_path']}/confluence/WEB-INF/lib"
 end
 
 template '/etc/init.d/confluence' do

@@ -76,9 +76,9 @@ execute "Extracting Confluence #{node['confluence']['version']}" do
   creates "#{node['confluence']['install_path']}/confluence"
 end
 
-if settings['database']['type'] == 'mysql'
+if settings['database']['type'] == 'mysql' || settings['database']['type'] == 'percona'
   include_recipe 'mysql_connector'
-  mysql_connector_j "#{node['confluence']['install_path']}/lib"
+  mysql_connector_j "#{node['confluence']['install_path']}/confluence/WEB-INF/lib"
 end
 
 template '/etc/init.d/confluence' do
