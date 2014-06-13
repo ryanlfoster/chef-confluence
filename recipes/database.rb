@@ -25,10 +25,13 @@ database_connection = {
 }
 
 case settings['database']['type']
-when 'mysql'
-  include_recipe 'mysql::server'
+when 'mysql', 'percona'
+  include_recipe "#{settings['database']['type']}::server"
   include_recipe 'database::mysql'
-  database_connection.merge!(:username => 'root', :password => node['mysql']['server_root_password'])
+  
+  root_password = settings['database']['type'] == 'mysql' ? node['mysql']['server_root_password'] : EncryptedPasswords.new(node, node["percona"]["encrypted_data_bag"]).root_password
+
+  database_connection.merge!(:username => 'root', :password => root_password)
 
   mysql_database settings['database']['name'] do
     connection database_connection

@@ -42,7 +42,7 @@ class Chef
           settings ||= node['confluence']
 
           case settings['database']['type']
-          when 'mysql'
+          when 'mysql', 'percona'
             settings['database']['port'] ||= 3306
           when 'postgresql'
             settings['database']['port'] ||= 5432
