@@ -59,8 +59,8 @@ remote_file "#{Chef::Config[:file_cache_path]}/atlassian-confluence-#{node['conf
 end
 
 directory File.dirname(node['confluence']['install_path']) do
-  owner node['confluence']['user']
-  group node['confluence']['user']
+  owner 'root'
+  group 'root'
   mode 00755
   action :create
   recursive true
