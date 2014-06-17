@@ -54,8 +54,8 @@ execute 'Generating Self-Signed Java Keystore' do
 end
 
 directory File.dirname(node['confluence']['install_path']) do
-  owner node['confluence']['user']
-  group node['confluence']['user']
+  owner 'root'
+  group 'root'
   mode 00755
   action :create
   recursive true
