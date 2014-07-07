@@ -26,6 +26,21 @@ template "#{node['confluence']['install_path']}/confluence/WEB-INF/classes/confl
   notifies :restart, 'service[confluence]', :delayed
 end
 
+template "#{node['confluence']['install_path']}/confluence/WEB-INF/classes/crowd.properties" do
+  source "crowd.properties.erb"
+  owner  node['confluence']['user']
+  mode   "0644"
+  notifies :restart, "service[confluence]", :delayed
+  only_if { node['confluence']['crowd']['integration'] }
+end
+
+template "#{node['confluence']['install_path']}/confluence/WEB-INF/classes/seraph-config.xml" do
+  source 'seraph-config.xml.erb'
+  owner node['confluence']['user']
+  mode '0644'
+  notifies :restart, 'service[confluence]', :delayed
+end
+
 # template "#{node['confluence']['home_path']}/confluence.cfg.xml" do
 #  source "confluence.cfg.xml.erb"
 #  owner  node['confluence']['user']

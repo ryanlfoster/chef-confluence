@@ -250,3 +250,12 @@ default['confluence']['tomcat']['keystorePass'] = 'changeit'
 default['confluence']['tomcat']['port']         = '8090'
 default['confluence']['tomcat']['ssl_port']     = '8443'
 default['confluence']['context']                = ''
+
+default['confluence']['crowd']['integration'] = false
+default['confluence']['crowd']['sso'] = false
+default['confluence']['crowd']['application.name'] = 'jira'
+default['confluence']['crowd']['application.password'] = 'password'
+default['confluence']['crowd']['application.login.url'] = 'http://localhost:8095/crowd/console/'
+default['confluence']['crowd']['crowd.server.url'] = 'http://localhost:8095/crowd/services'
+default['confluence']['crowd']['crowd.base.url'] = 'http://localhost:8095/crowd/'
+default['confluence']['crowd']['session.validationinterval'] = 2
