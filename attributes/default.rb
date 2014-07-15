@@ -22,7 +22,7 @@ default['confluence']['install_path']   = '/opt/atlassian/confluence'
 default['confluence']['install_type']   = 'installer'
 default['confluence']['url_base']       = 'http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence'
 default['confluence']['user']           = 'confluence'
-default['confluence']['version']        = '5.5.2'
+default['confluence']['version']        = '5.5.3'
 
 if node['kernel']['machine'] == 'x86_64'
   default['confluence']['arch'] = 'x64'
@@ -50,6 +50,7 @@ when 'windows'
       when '5.2.5' then '8abe637f02eb41adbedbae8c17ed798a5465b1ae1d67bb4dd130a9f00a9085c0'
       when '5.3' then '91b82f2351835891c6962ae04b1c7f266186f5620cb42c7a85a344d802e7311a'
       when '5.5.2' then 'becfec2648f820449f36ff765260553026d96d03823e83ff4657d3401b3a05c5'
+      when '5.5.3' then '12f7d30d9d587dee7b2be9f17e8c4b5c79818e726f8f85a03de50b719e8e726e'
       end
   when 'cluster-war'
     default['confluence']['url']      = "#{node['confluence']['url_base']}-#{node['confluence']['version']}-cluster-war.zip"
@@ -67,6 +68,7 @@ when 'windows'
       when '5.2.5' then '824969b0f9b2806fc67b9ce1d83f737512d44d4ca19d34e6e04736572b2e6368'
       when '5.3' then 'd7762ff2733a9e5b0b0b26b00e10ba3fd79c0b132e31df9c23d1204bd69d6b80'
       when '5.5.2' then 'e4a08685acff77bc08217aa2f827c4e83b868abec73331dc8277b2f1472bb9e1'
+      when '5.5.3' then '1010dfb22ea3cbbf7a1c91ac5265d9426595d8dc92b761b1a79cc07cc5a3b838'
       end
   when 'installer'
     default['confluence']['url']      = "#{node['confluence']['url_base']}-#{node['confluence']['version']}-#{node['confluence']['arch']}.exe"
@@ -84,6 +86,7 @@ when 'windows'
       when '5.2.5' then node['confluence']['arch'] == 'x64' ? '475ff07681f091d2870c8374f1d42cd1daf5784e0382635459d1278eb7ea4a38' : '846dcfab2088d8a3b8532291248014bcda513b062f07d0a32e425858f38dbc93'
       when '5.3' then node['confluence']['arch'] == 'x64' ? '8beceacff1224800ff65680c901818285f0fcd3b43f827404a696de0a091437d' : 'a5f60497bb30fb7580062f5e1e1464a0fbd8bacfa86b32e36697ed725d8b7834'
       when '5.5.2' then node['confluence']['arch'] == 'x64' ? '76b7053aced3c859753e83b1109ebb5b00cae30ae87110c7c5d64fa40f7680b3' : '64dcb47341ad5daa28d015f7ce7a9b80eb8d8cc88f948a95e124150f12fa8612'
+      when '5.5.3' then node['confluence']['arch'] == 'x64' ? 'e81417234cb2f29b0a4ebfcbc9d69dc673960e1efb14e2d175dc506abf642e15' : 'a0daa11d1da487fa81a47921fdb025296fb76580181574050b8f543288a49371'
       end
   when 'standalone'
     default['confluence']['url']      = "#{node['confluence']['url_base']}-#{node['confluence']['version']}.zip"
@@ -101,6 +104,7 @@ when 'windows'
       when '5.2.5' then '0c54d764ad1afc8f91e5c94cd5835e69381903431b7d005048c772e4b6a033c2'
       when '5.3' then 'a87897a0e8f6f789d3e184d8b0268d36e0bd56200d17390787d7a34796a5ddec'
       when '5.5.2' then '20b45fda5493e6a1fd55f11952c851d8ae4e4afff27be5aa651b52423f4b1d4b'
+      when '5.5.3' then '414f07ad27471ddf2c40f55a564e2e833c579af504aaa7154f3fb9d7f7cd5657'
       end
   when 'war'
     default['confluence']['url']      = "#{node['confluence']['url_base']}-#{node['confluence']['version']}-war.zip"
@@ -118,6 +122,7 @@ when 'windows'
       when '5.2.5' then '79cda04ca2d36b71139c13b3ddd5cd26f5c38489ba11231222ff77e2fe6c7fe1'
       when '5.3' then 'f7f61c5ad821a99fa4db5c48180134fb7eba65d39700398e9c7585bd911dd04f'
       when '5.5.2' then '245355e7338ca9da9323a993fc503fba53ffb02e16b14aa131263927e89a754f'
+      when '5.5.3' then '096f42c70010e9a64f7759d0e3dc9d59a15327e3754c056a5c0b39deb2b2dc63'
       end
   end
 else
@@ -138,6 +143,7 @@ else
       when '5.2.5' then '15d1d6a47f8092ba44379a330a5a8aabf23d020b3ac69ad653eadcfbb7559b90'
       when '5.3' then '4553d26782071ce94beb6399f92c9aaa6975819de58ab08f5b960273ed974f34'
       when '5.5.2' then '487b54c8b84d9667e2da24392fc580d4bdb93a32bfc28180350b1ffedd1a4dea'
+      when '5.5.3' then 'ee0a5c23c41cbe6b9cf920fb84c66c8b7414ee8a2f4b9f1dd5be9f870fd14e6f'
       end
   when 'cluster-war'
     default['confluence']['url']      = "#{node['confluence']['url_base']}-#{node['confluence']['version']}-cluster-war.tar.gz"
@@ -155,6 +161,7 @@ else
       when '5.2.5' then '59828676833c9e050c044ce068aeb4ac47e59579ba0ec90001629c27c2cb20d6'
       when '5.3' then 'a0796f1a11896774a44251a0dfa9a6de6b4f4d49cacda7b2a2aeff896ec1f7ae'
       when '5.5.2' then '75d2af82d43ba4944bffa1235a37145947c8d80520a89b71bb78e2e021fee8da'
+      when '5.5.3' then 'd8a05e0a66b07072863778907e6648510ec007520003491f5e2c458ecfd98438'
       end
   when 'installer'
     default['confluence']['url']      = "#{node['confluence']['url_base']}-#{node['confluence']['version']}-#{node['confluence']['arch']}.bin"
@@ -172,6 +179,7 @@ else
       when '5.2.5' then node['confluence']['arch'] == 'x64' ? 'c194abbc53142614adbdb0e3b6cc4a8a1106053563a02ab51a7c87189f502c1d' : 'd5efce4aaf0dccaaccdac2aeb35c2a7b025770bf05da2e84a4c89ad4de5c7b54'
       when '5.3' then node['confluence']['arch'] == 'x64' ? '4c61f3511ae3faeab11a689f26fbb82a7fc7c30525bd40c50e8854bc22b8e0be' : '5676b8fb7c8bbd1699f6cc5a8bcd7b72973bb98940bd0a56e13e5f96a6532c3d'
       when '5.5.2' then node['confluence']['arch'] == 'x64' ? '6b0361e2e25161f5e2d99380b397b5768fef835922dcb21ae34dfbc484bc203c' : '4e2ceb32cfa45085b184bbe08c7d4fbce6985487f9d12855e7fd4d0e60d9c78f'
+      when '5.5.3' then node['confluence']['arch'] == 'x64' ? '0f091ecac293332f0841d80374090c5688fd413272e557d426d0b6809601030b' : '7e4be644b4fb9b58e5794029f0c733cc8537b3e1a8dd797949a8133c7d87ce73'
       end
   when 'standalone'
     default['confluence']['url']      = "#{node['confluence']['url_base']}-#{node['confluence']['version']}.tar.gz"
@@ -189,6 +197,7 @@ else
       when '5.2.5' then '98fef6163e0190d673b5ea4a3a2c8c3dd32e02d729361450515df2c4d5245892'
       when '5.3' then 'acc2f3c484bd1855b8c7c9d741da19d51a7595eed78d147d38c2c9aa63627f67'
       when '5.5.2' then '667190e9006de123e55ccc04e639321070dc65a40658ba3aa0b9d8e3473048eb'
+      when '5.5.3' then '66538cba1a7925c82a2db5d438af27167c0a12dc02466d045a2f006f0f24d524'
       end
   when 'war'
     default['confluence']['url']      = "#{node['confluence']['url_base']}-#{node['confluence']['version']}-war.tar.gz"
@@ -206,6 +215,7 @@ else
       when '5.2.5' then '5588f731bbd9089de9038b00467df4930b69f2840e82b646bd0459bcab05c6cb'
       when '5.3' then '13d0eafab7a3bf889b3849c0ed999afaf305ac7ac2300c08fce3cd60d81de07b'
       when '5.5.2' then '69ebcd2f1394528b5dff8b46126640a2bb62028baf2868b125a029882a72fcfd'
+      when '5.5.3' then '46c49f07a02a82f3fd363b67ab40135969e80d3a16d14fefb2e58695050065a7'
       end
   end
 end
