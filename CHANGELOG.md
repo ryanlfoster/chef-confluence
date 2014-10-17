@@ -1,3 +1,7 @@
+## 1.9.0
+
+* Bump default version of Confluence to 5.6.3
+
 ## 1.8.0
 
 * Bump default version of Confluence to 5.6
